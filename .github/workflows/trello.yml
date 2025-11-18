@@ -21,12 +21,12 @@ jobs:
     steps:
       - name: Create Trello card for this commit
         run: |
-          CARD_NAME="Commit by ${COMMIT_AUTHOR}: ${COMMIT_MESSAGE}"
-          CARD_DESC="Repository: ${REPO_NAME}
+          CARD_NAME="${COMMIT_MESSAGE} | commit by ${COMMIT_AUTHOR} | ${COMMIT_URL}"
+          CARD_DESC="Commit message: ${COMMIT_MESSAGE}
           Author: ${COMMIT_AUTHOR}
-          Commit message: ${COMMIT_MESSAGE}
-          Commit URL: ${COMMIT_URL}"
-
+          Commit URL: ${COMMIT_URL}
+          Repository: ${REPO_NAME}"
+          
           curl -X POST "https://api.trello.com/1/cards" \
             --data-urlencode "name=${CARD_NAME}" \
             --data-urlencode "desc=${CARD_DESC}" \
